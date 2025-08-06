@@ -1,10 +1,8 @@
-# 🛠️ Node.js + Express + Mongoose + TypeScript Boilerplate
+# ✅ Step-by-Step Guide to Setup Node.js + Express + Mongoose + TypeScript Server
 
-This is a boilerplate for setting up a Node.js server using Express, Mongoose, and TypeScript, with ESLint and Prettier configured.
+এই প্রোজেক্টটি Node.js + Express + Mongoose + TypeScript ব্যবহার করে একটি সার্ভার তৈরি করার পুরো প্রক্রিয়া কভার করে।
 
 ---
-
-## ✅ Step-by-Step Setup Guide
 
 ### 🟢 Step 1: Project Folder & VS Code
 
@@ -26,7 +24,7 @@ npm init -y
 npm install express mongoose cors dotenv
 ```
 
-### 🟢 Step 4: Install TypeScript
+### 🟢 Step 4: Install TypeScript (dev dependency)
 
 ```bash
 npm install --save-dev typescript
@@ -38,7 +36,7 @@ npm install --save-dev typescript
 npx tsc --init
 ```
 
-Update `tsconfig.json`:
+তারপর `tsconfig.json` ফাইলে নিচের পরিবর্তন করুন:
 
 ```json
 {
@@ -49,26 +47,27 @@ Update `tsconfig.json`:
 }
 ```
 
-### 🟢 Step 6: Add Scripts to package.json
+### 🟢 Step 6: Add Build Script to package.json
 
 ```json
 "scripts": {
-  "build": "tsc",
-  "start:prod": "node ./dist/server.js",
-  "start:dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-  "lint": "eslint src --ext .ts .",
-  "lint:problem": "npx eslint src .",
-  "lint:fix": "npx eslint src --fix",
-  "prettier": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
-  "prettier:fix": "npx prettier --write src",
-  "test": "echo \"Error: no test specified\" && exit 1"
+  "build": "tsc"
 }
 ```
 
-### 🟢 Step 7: Install ts-node-dev
+### 🟢 Step 7: Install ts-node-dev for Development
 
 ```bash
 npm install --save-dev ts-node-dev
+```
+
+`package.json` এ স্ক্রিপ্ট যুক্ত করুন:
+
+```json
+"scripts": {
+  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+  "dev:prod": "node ./dist/server.js"
+}
 ```
 
 ### 🟢 Step 8: Setup ESLint
@@ -78,7 +77,7 @@ npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --
 npx eslint --init
 ```
 
-Create `eslint.config.mjs`:
+`eslint.config.mjs` ফাইলে যুক্ত করুন:
 
 ```js
 import globals from "globals";
@@ -118,13 +117,23 @@ export default [
 ];
 ```
 
+`package.json` এ lint স্ক্রিপ্ট যুক্ত করুন:
+
+```json
+"scripts": {
+  "lint": "eslint src --ext .ts .",
+  "lint:problem": "npx eslint src .",
+  "lint:fix": "npx eslint src --fix"
+}
+```
+
 ### 🟢 Step 9: Setup Prettier
 
 ```bash
 npm install --save-dev prettier
 ```
 
-Create `.prettierrc.json`:
+`.prettierrc.json` ফাইল তৈরি করুন:
 
 ```json
 {
@@ -133,11 +142,20 @@ Create `.prettierrc.json`:
 }
 ```
 
-Create `.prettierignore`:
+`.prettierignore` ফাইল তৈরি করুন:
 
 ```
 node_modules
 dist
+```
+
+`package.json` এ Prettier স্ক্রিপ্ট যুক্ত করুন:
+
+```json
+"scripts": {
+  "prettier": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
+  "prettier:fix": "npx prettier --write src"
+}
 ```
 
 ### 🟢 Step 10: Prevent ESLint & Prettier Conflict
@@ -154,7 +172,7 @@ npm install --save-dev @types/cors @types/express @types/node
 
 ---
 
-## 🚀 Sample `src/server.ts`
+### ✅ Bonus: Sample `src/server.ts`
 
 ```ts
 import express, { Application, Request, Response } from 'express';
@@ -180,6 +198,4 @@ app.listen(port, () => {
 
 ---
 
-## 📜 License
-
-MIT
+সফলভাবে আপনি এখন একটি টাইপস্ক্রিপ্ট বেসড এক্সপ্রেস সার্ভার তৈরি করে ফেলেছেন 🎉
