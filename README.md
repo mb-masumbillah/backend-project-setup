@@ -127,6 +127,12 @@ export default [
 }
 ```
 
+### 🟢 Step 9: ESLint setup test command
+
+```bash
+npx eslint .
+```
+
 ### 🟢 Step 9: Setup Prettier
 
 ```bash
