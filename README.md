@@ -33,7 +33,7 @@ npm install --save-dev typescript
 ### 🟢 Step 5: Initialize TypeScript Configuration
 
 ```bash
-npx tsc --init
+tsc --init
 ```
 
 তারপর `tsconfig.json` ফাইলে নিচের পরিবর্তন করুন:
